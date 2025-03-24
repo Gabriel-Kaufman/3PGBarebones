@@ -11,7 +11,7 @@ The 3PG model is a process-based model that predicts the growth of forest stands
 This repository contains two main scripts:
 
 1. **`simple_3pg_example.R`** - A minimal example script that demonstrates basic 3PG model usage with the built-in example datasets.
-2. **`3pg_biomass_only.R`** - A more comprehensive script that focuses on biomass accumulation and carbon sequestration, with visualizations and detailed outputs.
+2. **`3pg_biomass_only.R`** - A more comprehensive script that focuses on biomass accumulation and carbon sequestration, with visualizations and detailed outputs. This uses sample data which we collect from our project, and can serve as a template for setting up the carbon sequestration equivalents based on species.
 
 ## How to Use
 
