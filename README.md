@@ -8,7 +8,7 @@ The 3PG model is a process-based model that predicts the growth of forest stands
 
 ## Repository Contents
 
-This repository contains three main scripts:
+This repository contains four main scripts:
 
 1. **`simple_3pg_example.R`** - A minimal example script that demonstrates basic 3PG model usage with the built-in example datasets.
 
@@ -16,17 +16,19 @@ This repository contains three main scripts:
 
 3. **`3pg_carbon_standlevel.R`** - An advanced script for modeling mixed-species stands and calculating carbon sequestration on a specific land area (0.1 acres). Includes outputs in both metric tonnes and short tons.
 
+4. **`3pg_with_sensor_data.R`** - A specialized script that processes real sensor data from CSV files and combines it with sample values for missing variables to run the 3PG model. Ideal for integrating IoT sensor networks with forest growth models.
+
 ## How to Use
 
 ### Prerequisites
 
 - R (version 4.0 or higher recommended)
-- Required packages: `r3PG`, `dplyr`, `lubridate`, `ggplot2`
+- Required packages: `r3PG`, `dplyr`, `lubridate`, `ggplot2`, `readr`
 
 You can install these packages using:
 
 ```r
-install.packages(c("r3PG", "dplyr", "lubridate", "ggplot2"))
+install.packages(c("r3PG", "dplyr", "lubridate", "ggplot2", "readr"))
 ```
 
 ### Running the Scripts
@@ -61,21 +63,19 @@ Run `3pg_carbon_standlevel.R` for an advanced multi-species carbon analysis. Thi
 - Creates species-specific carbon visualizations
 - Saves detailed CSV outputs for further analysis
 
-The stand-level script produces the following outputs:
+#### Using Sensor Data
 
-1. **Text summaries**:
-   - Stand biomass per hectare (initial, final, change)
-   - Total carbon on 0.1 acres in metric tonnes and short tons
+Run `3pg_with_sensor_data.R` to process and use real sensor data with the 3PG model. This script:
 
-2. **CSV files**:
-   - `species_biomass_per_ha.csv` - Biomass for each species
-   - `stand_biomass_per_ha.csv` - Combined stand biomass
-   - `stand_carbon_0.1_acres_metric_tonnes.csv` - Carbon in metric tonnes
-   - `stand_carbon_0.1_acres_short_tons.csv` - Carbon in short tons
+- Reads and processes sensor data from a CSV file (`db-80.Cluster0.csv`)
+- Aggregates high-frequency sensor readings to monthly averages required by 3PG
+- Fills in missing variables (like precipitation) with sample estimates
+- Converts sensor light readings to solar radiation estimates
+- Runs the 3PG model with a mix of real and estimated data
+- Produces biomass and carbon sequestration results and visualizations
+- All sample/estimated data is clearly marked in the code
 
-3. **Visualization plots**:
-   - `total_carbon_over_time_0.1_acres_short_tons.png`
-   - `carbon_over_time_by_species_per_ha.png`
+The sensor data script expects a CSV file with columns for timestamp, temperature, humidity, light levels, and soil measurements. It will automatically convert this data to the format required by the 3PG model.
 
 ## Customizing for Your Needs
 
@@ -88,6 +88,16 @@ To adapt the scripts for your specific forest stand:
 3. Adjust the species parameters (fertility, initial biomass, etc.)
 4. Change the simulation time period by modifying the date range
 5. For the stand-level script, adjust the plot area (currently set to 0.1 acres)
+
+### Working with Sensor Data
+
+If using the sensor data script, you can customize it by:
+
+1. Replacing sample estimates with actual data where available
+2. Calibrating the light-to-solar-radiation conversion for your specific sensors
+3. Developing more accurate precipitation estimations based on local data
+4. Specifying the actual tree species present at your monitoring site
+5. Providing real initial biomass values if you have inventory data
 
 ### Adding More Species
 
