@@ -8,10 +8,13 @@ The 3PG model is a process-based model that predicts the growth of forest stands
 
 ## Repository Contents
 
-This repository contains two main scripts:
+This repository contains three main scripts:
 
 1. **`simple_3pg_example.R`** - A minimal example script that demonstrates basic 3PG model usage with the built-in example datasets.
-2. **`3pg_biomass_only.R`** - A more comprehensive script that focuses on biomass accumulation and carbon sequestration, with visualizations and detailed outputs. This uses sample data which we collect from our project, and can serve as a template for setting up the carbon sequestration equivalents based on species.
+
+2. **`3pg_biomass_only.R`** - A more comprehensive script that focuses on biomass accumulation and carbon sequestration, with visualizations and detailed outputs.
+
+3. **`3pg_carbon_standlevel.R`** - An advanced script for modeling mixed-species stands and calculating carbon sequestration on a specific land area (0.1 acres). Includes outputs in both metric tonnes and short tons.
 
 ## How to Use
 
@@ -47,26 +50,32 @@ Run `3pg_biomass_only.R` for a more detailed analysis focused on biomass and car
 - Generates visualizations showing biomass and carbon changes over time
 - Saves results to CSV files and plots as PNG images
 
-The biomass script produces the following outputs:
+#### Stand-Level Carbon Analysis
+
+Run `3pg_carbon_standlevel.R` for an advanced multi-species carbon analysis. This script:
+
+- Models two different tree species in the same stand
+- Calculates stand-level biomass and carbon sequestration
+- Converts from per-hectare values to a specific land area (0.1 acres)
+- Provides carbon values in both metric tonnes and short tons
+- Creates species-specific carbon visualizations
+- Saves detailed CSV outputs for further analysis
+
+The stand-level script produces the following outputs:
 
 1. **Text summaries**:
-   - Biomass summary (initial, final, change)
-   - Component-specific biomass changes (stem, root, foliage)
-   - Carbon sequestration estimates
-   - CO2 equivalent values
+   - Stand biomass per hectare (initial, final, change)
+   - Total carbon on 0.1 acres in metric tonnes and short tons
 
 2. **CSV files**:
-   - `biomass_results.csv` - Biomass values for each component over time
-   - `monthly_biomass_change.csv` - Monthly changes in biomass
-   - `carbon_sequestration.csv` - Summary of carbon metrics
-   - `carbon_by_component.csv` - Carbon by tree component
+   - `species_biomass_per_ha.csv` - Biomass for each species
+   - `stand_biomass_per_ha.csv` - Combined stand biomass
+   - `stand_carbon_0.1_acres_metric_tonnes.csv` - Carbon in metric tonnes
+   - `stand_carbon_0.1_acres_short_tons.csv` - Carbon in short tons
 
 3. **Visualization plots**:
-   - `total_biomass_over_time.png`
-   - `biomass_components_over_time.png`
-   - `carbon_over_time.png`
-   - `co2_equivalent_over_time.png`
-   - `monthly_co2_sequestration.png`
+   - `total_carbon_over_time_0.1_acres_short_tons.png`
+   - `carbon_over_time_by_species_per_ha.png`
 
 ## Customizing for Your Needs
 
@@ -78,6 +87,7 @@ To adapt the scripts for your specific forest stand:
 2. Modify the climate data or create your own based on local weather records
 3. Adjust the species parameters (fertility, initial biomass, etc.)
 4. Change the simulation time period by modifying the date range
+5. For the stand-level script, adjust the plot area (currently set to 0.1 acres)
 
 ### Adding More Species
 
